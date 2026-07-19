@@ -11,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stylehub.core.common.Footer
 import com.example.stylehub.core.common.Header
+import com.example.stylehub.domain.ProductsTest
+import com.example.stylehub.presentation.home.components.ForYou
 import com.example.stylehub.presentation.home.components.HeroBanner
 import com.example.stylehub.presentation.home.components.NewArrival
+import com.example.stylehub.presentation.home.components.Trending
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,13 +37,19 @@ fun HomeScreen(
         ) {
             item {
                 HeroBanner()
-            }
-            item {
+
                 NewArrival()
-            }
-            item {
+
+                ForYou(
+                    productModel = ProductsTest
+                )
+
+
+                Trending()
+
                 Footer()
             }
+
         }
     }
 }

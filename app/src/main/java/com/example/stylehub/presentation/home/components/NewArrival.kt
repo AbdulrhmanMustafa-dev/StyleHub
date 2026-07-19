@@ -128,7 +128,7 @@ fun NewArrival(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             maxItemsInEachRow = 2
         ) {
-            for (i in 0 until ProductsTest.size) {
+            for (i in ProductsTest.indices) {
                 Product(product = ProductsTest[i], modifier = Modifier.weight(1f))
             }
         }
@@ -181,7 +181,7 @@ fun NewArrival(
             ),
             maxItemsInEachRow = 3
         ) {
-            for (i in 0 until brands.size) {
+            for (i in brands.indices) {
                 Image(
                     painter = painterResource(id = brands[i]),
                     contentDescription = null,
