@@ -1,7 +1,10 @@
 package com.example.stylehub.presentation.home.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -9,14 +12,17 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -24,10 +30,12 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stylehub.R
 import com.example.stylehub.domain.ProductsTest
+
 
 @Composable
 fun NewArrival(
@@ -50,6 +58,11 @@ fun NewArrival(
         R.drawable.tiffany___co,
         R.drawable.catier
     )
+    val localContext = androidx.compose.ui.platform.LocalContext.current
+    val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
+    val currentIndex = remember {
+        androidx.compose.runtime.mutableStateOf(0)
+    }
     Column(
         modifier =
             Modifier
@@ -83,41 +96,55 @@ fun NewArrival(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            items(newArrivalItem.size) { index ->
-                if (index == 0) {
-                    Text(
-                        text = newArrivalItem[index],
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            lineHeight = 14.84.sp,
-                            fontFamily = FontFamily(Font(R.font.tenorsans)),
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF212806),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 1.sp,
-                        )
-                    )
-                } else {
-                    Text(
-                        text = newArrivalItem[index],
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            lineHeight = 14.84.sp,
-                            fontFamily = FontFamily(Font(R.font.tenorsans)),
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF888888),
-                            textAlign = TextAlign.Center,
-                            letterSpacing = 1.sp,
-                        )
-                    )
-                }
-            }
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
 
+
+            ) {
+            items(newArrivalItem.size) { index ->
+                val isSelected = index == currentIndex.value
+
+                Column(
+                    modifier = Modifier,
+                ) {
+                    Text(
+                        text = newArrivalItem[index],
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
+                            .clickable(
+                                onClick = {
+                                    currentIndex.value = index
+                                }
+                            ),
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            lineHeight = 14.84.sp,
+                            fontFamily = FontFamily(Font(R.font.tenorsans)),
+                            fontWeight = FontWeight(400),
+                            color = if (isSelected) Color(0xFF212806) else Color(0xFF888888),
+                            textAlign = TextAlign.Center,
+                            letterSpacing = 1.sp,
+                        )
+                    )
+                    if (isSelected) {
+                        Box(
+                            modifier =
+                                Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .size(6.dp) // حجم المربع
+                                    .rotate(45f)
+                                    .background(Color(0xFFDD8560))
+                                    .padding(top = 6.dp)
+
+
+                        )
+                    }
+                }
+
+
+            }
         }
+
+
         Spacer(modifier = modifier.height(16.dp))
         FlowRow(
             modifier =
@@ -135,7 +162,7 @@ fun NewArrival(
         Spacer(modifier = modifier.height(16.dp))
 
         TextButton(
-            onClick = { /* TODO: Navigate to collection */ },
+            onClick = { /* TODO: te to collection */ },
             modifier = modifier
         ) {
             Row(
@@ -195,4 +222,13 @@ fun NewArrival(
         )
 
     }
+}
+
+
+@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true)
+@Composable
+private fun test() {
+    NewArrival(
+        modifier = Modifier.background(Color(0xFFFFFFFF))
+    )
 }

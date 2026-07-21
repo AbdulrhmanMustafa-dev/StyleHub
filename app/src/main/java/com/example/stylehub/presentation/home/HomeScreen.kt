@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stylehub.core.common.Footer
 import com.example.stylehub.core.common.Header
+import com.example.stylehub.domain.BannerList
 import com.example.stylehub.domain.ProductsTest
 import com.example.stylehub.presentation.home.components.ForYou
 import com.example.stylehub.presentation.home.components.HeroBanner
@@ -36,7 +37,7 @@ fun HomeScreen(
                     .padding(innerPadding),
         ) {
             item {
-                HeroBanner()
+                HeroBanner(bannerList = BannerList)
 
                 NewArrival()
 
