@@ -2,6 +2,7 @@ package com.example.stylehub.presentation.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,7 +35,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getColor
 import com.example.stylehub.R
-import com.example.stylehub.domain.BannerModel
+import com.example.stylehub.core.ui.theme.placeHolderColor
+import com.example.stylehub.core.ui.theme.secondaryColor
+import com.example.stylehub.domain.models.BannerModel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -42,7 +45,7 @@ fun HeroBanner(modifier: Modifier = Modifier, bannerList: List<BannerModel>) {
     val pagerState =
         androidx.compose.foundation.pager.rememberPagerState(pageCount = { bannerList.size })
     val coroutineScope = rememberCoroutineScope()
-    val localContext =  androidx.compose.ui.platform.LocalContext.current
+    val localContext = androidx.compose.ui.platform.LocalContext.current
     Box(
         modifier =
             modifier
@@ -113,20 +116,7 @@ fun HeroBanner(modifier: Modifier = Modifier, bannerList: List<BannerModel>) {
                 repeat(bannerList.size) { iteration ->
                     val color =
                         if (pagerState.currentPage == iteration) R.color.Secondary else R.color.Offwhite
-//                    Spacer(
-//                        modifier = Modifier
-//                            .padding(horizontal = 4.dp)
-//                            .height(8.dp)
-//                            .clip(shape = RoundedCornerShape(8.dp))
-//                            .background(color)
-//                            .width(if (pagerState.currentPage == iteration) 24.dp else 8.dp)
-//                            .clickable {
-//                                coroutineScope.launch {
-//                                    pagerState.animateScrollToPage(page = iteration)
-//                                }
-//                            }
-//
-//                    )
+
                     Box(
                         modifier =
                             Modifier
@@ -135,6 +125,11 @@ fun HeroBanner(modifier: Modifier = Modifier, bannerList: List<BannerModel>) {
                                 .background(Color(getColor(localContext, color)))
                                 .size(8.dp)
                                 .padding(16.dp)
+                                .border(
+                                    width = 1.dp,
+                                    color = if (pagerState.currentPage == iteration) secondaryColor else placeHolderColor,
+                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
+                                )
                                 .clickable(
                                     onClick = {
                                         coroutineScope.launch {
@@ -162,17 +157,17 @@ private fun test() {
                 id = 1,
                 image = R.drawable.image_10,
 
-            ),
+                ),
             BannerModel(
                 id = 2,
                 image = R.drawable.image_10,
 
-            ),
+                ),
             BannerModel(
                 id = 3,
                 image = R.drawable.image_10,
 
-            )
+                )
         )
     )
 }

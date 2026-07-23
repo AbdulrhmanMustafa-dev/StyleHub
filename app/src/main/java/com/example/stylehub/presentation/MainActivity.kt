@@ -10,9 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.stylehub.core.ui.theme.StyleHubTheme
-import com.example.stylehub.presentation.home.HomeActions
-import com.example.stylehub.presentation.home.HomeScreen
-import com.example.stylehub.presentation.home.HomeState
+import com.example.stylehub.presentation.home.HomeRoute
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(state = HomeState(), actions = HomeActions())
+                    HomeRoute()
                 }
             }
         }

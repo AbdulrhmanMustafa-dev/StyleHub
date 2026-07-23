@@ -24,11 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.stylehub.domain.TrendingListTist
+import com.example.stylehub.domain.models.TrendingModel
 
 @Composable
 fun Trending(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    trendingListTist: List<TrendingModel>
 ) {
     Column(
         modifier =
@@ -62,7 +63,7 @@ fun Trending(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            for (i in TrendingListTist.indices) {
+            for (i in trendingListTist.indices) {
                 Box(
                     Modifier
                         .padding(0.5.dp)
@@ -73,7 +74,7 @@ fun Trending(
                         .padding(start = 10.dp, top = 8.dp, end = 10.dp, bottom = 8.dp)
                 ) {
                     Text(
-                        text = TrendingListTist[i].title,
+                        text = trendingListTist[i].title,
                         style = TextStyle(
                             fontSize = 14.sp,
                             lineHeight = 16.sp,

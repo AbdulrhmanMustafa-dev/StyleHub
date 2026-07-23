@@ -26,7 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stylehub.R
-import com.example.stylehub.domain.ProductModel
+import com.example.stylehub.core.ui.theme.Purple80
+import com.example.stylehub.domain.models.ProductModel
 
 @Composable
 fun Product(
@@ -44,11 +45,11 @@ fun Product(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .aspectRatio(3f/4f)
+                    .aspectRatio(3f / 4f)
                     .clip(RoundedCornerShape(16.dp))
         ) {
             Image(
-                painter = painterResource(id = product.image),
+                painter = painterResource(id = product.images[0]),
                 contentDescription = product.description,
                 modifier = Modifier
                     .fillMaxSize(),
@@ -63,7 +64,7 @@ fun Product(
                 lineHeight = 16.sp,
                 fontFamily = FontFamily(Font(R.font.tenorsans)),
                 fontWeight = FontWeight(400),
-                color = Color(0xFF333333),
+                color = Purple80,
                 textAlign = TextAlign.Center,
             )
         )
@@ -76,6 +77,7 @@ fun Product(
                 fontFamily = FontFamily(Font(R.font.tenorsans)),
                 fontWeight = FontWeight(400),
                 color = Color(0xFFDD8560),
+                textAlign = TextAlign.Center,
             )
         )
 

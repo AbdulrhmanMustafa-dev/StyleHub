@@ -30,34 +30,19 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stylehub.R
-import com.example.stylehub.domain.ProductsTest
 
 
 @Composable
 fun NewArrival(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    newArrivalItem: List<String>,
+    brands: List<Int>,
+    productsTest: List<com.example.stylehub.domain.models.ProductModel>
 ) {
-    val newArrivalItem = mutableListOf<String>(
-        "All",
-        "Apparel",
-        "Dress",
-        "Tshirt",
-        "Jeans",
-        "Shoes",
-        "Bag",
-    )
-    val brands = mutableListOf<Int>(
-        R.drawable.boss,
-        R.drawable.burberry,
-        R.drawable.gucci,
-        R.drawable.prada,
-        R.drawable.tiffany___co,
-        R.drawable.catier
-    )
+
     val localContext = androidx.compose.ui.platform.LocalContext.current
     val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
     val currentIndex = remember {
@@ -155,8 +140,8 @@ fun NewArrival(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             maxItemsInEachRow = 2
         ) {
-            for (i in ProductsTest.indices) {
-                Product(product = ProductsTest[i], modifier = Modifier.weight(1f))
+            for (i in productsTest.indices) {
+                Product(product = productsTest[i], modifier = Modifier.weight(1f))
             }
         }
         Spacer(modifier = modifier.height(16.dp))
@@ -222,13 +207,4 @@ fun NewArrival(
         )
 
     }
-}
-
-
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true)
-@Composable
-private fun test() {
-    NewArrival(
-        modifier = Modifier.background(Color(0xFFFFFFFF))
-    )
 }

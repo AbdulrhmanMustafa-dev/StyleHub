@@ -1,4 +1,4 @@
-package com.example.stylehub.domain
+package com.example.stylehub.domain.models
 
 import com.example.stylehub.R
 

@@ -11,8 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stylehub.core.common.Footer
 import com.example.stylehub.core.common.Header
-import com.example.stylehub.domain.BannerList
-import com.example.stylehub.domain.ProductsTest
 import com.example.stylehub.presentation.home.components.ForYou
 import com.example.stylehub.presentation.home.components.HeroBanner
 import com.example.stylehub.presentation.home.components.NewArrival
@@ -37,16 +35,69 @@ fun HomeScreen(
                     .padding(innerPadding),
         ) {
             item {
-                HeroBanner(bannerList = BannerList)
+                when (val state = state.bannerState) {
+                    is UiState.Success -> {
+                        HeroBanner(bannerList = state.data)
+                    }
 
-                NewArrival()
+                    is UiState.Loading -> {
 
-                ForYou(
-                    productModel = ProductsTest
-                )
+                    }
 
+                    is UiState.Error -> {
 
-                Trending()
+                    }
+                }
+
+                when (val state = state.newArrivalState) {
+                    is UiState.Success -> {
+                        NewArrival(
+                            newArrivalItem = state.data.categories,
+                            brands = state.data.brands,
+                            productsTest = state.data.products
+                        )
+                    }
+
+                    is UiState.Loading -> {
+
+                    }
+
+                    is UiState.Error -> {
+
+                    }
+                }
+
+                when (val state = state.forYouState) {
+                    is UiState.Success -> {
+                        ForYou(
+                            productModel = state.data
+                        )
+                    }
+
+                    is UiState.Loading -> {
+
+                    }
+
+                    is UiState.Error -> {
+
+                    }
+                }
+
+                when (val state = state.trendingState) {
+                    is UiState.Success -> {
+                        Trending(
+                            trendingListTist = state.data
+                        )
+                    }
+
+                    is UiState.Loading -> {
+
+                    }
+
+                    is UiState.Error -> {
+
+                    }
+                }
 
                 Footer()
             }

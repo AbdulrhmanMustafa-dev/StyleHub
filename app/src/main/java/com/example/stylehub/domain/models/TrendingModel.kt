@@ -1,4 +1,4 @@
-package com.example.stylehub.domain
+package com.example.stylehub.domain.models
 
 data class TrendingModel(
     val id: Int,
