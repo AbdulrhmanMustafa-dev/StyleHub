@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +31,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -40,6 +40,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stylehub.core.ui.theme.body
+import com.example.stylehub.core.ui.theme.label
 import com.example.stylehub.core.ui.theme.offWhiteColor
 import com.example.stylehub.core.ui.theme.placeHolderColor
 import com.example.stylehub.core.ui.theme.secondaryColor
@@ -57,7 +59,8 @@ fun Img(
         pageCount = { productImages.images.size }
     )
     val coroutineScope = rememberCoroutineScope()
-    val localContext = LocalContext.current
+    val selectorColor = remember { mutableStateOf(productImages.colors[0]) }
+    val selectorSize = remember { mutableStateOf(productImages.sizes[0]) }
 
 
     Column(
@@ -173,13 +176,13 @@ fun Img(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.Top,
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
-                text = "Color",
+                text = "Color :",
                 style = TextStyle(
-                    fontSize = 22.sp,
+                    fontSize = 12.sp,
                     lineHeight = 14.sp,
                     fontFamily = FontFamily(Font(com.example.stylehub.R.font.tenorsans)),
                     fontWeight = FontWeight(400),
@@ -187,39 +190,91 @@ fun Img(
                 )
             )
              Spacer(modifier = Modifier.width(8.dp))
-            val selector = remember { mutableStateOf(productImages.colors[0]) }
+
             for ( i in productImages.colors.indices) {
                 Box(
                     modifier = Modifier
                         .background(Color.Transparent)
-                        .size(32.dp)
+                        .size(24.dp)
                         .border(
-                            color = if (selector.value == productImages.colors[i]) placeHolderColor else Color.Transparent,
+                            color = if (selectorColor.value == productImages.colors[i]) placeHolderColor else Color.Transparent,
                             width = 2.dp,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .clickable(
                             onClick = {
-                                selector.value = productImages.colors[i]
+                                selectorColor.value = productImages.colors[i]
                             }
                         )
                 ) {
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(16.dp))
-                            .size(24.dp)
+                            .size(16.dp)
                             .background(productImages.colors[i])
                             .padding(horizontal = 8.dp, vertical = 4.dp)
                             .clickable(
                                 onClick = {
-                                    selector.value = productImages.colors[i]
+                                    selectorColor.value = productImages.colors[i]
                                 }
                             )
                             .align(Alignment.Center)
 
                     )
                 }
-                 Spacer(modifier = Modifier.width(8.dp))
+                 Spacer(modifier = Modifier.width(4.dp))
+            }
+            Spacer(modifier = Modifier.weight(1F))
+            Text(
+                text = "Size :",
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    lineHeight = 14.sp,
+                    fontFamily = FontFamily(Font(com.example.stylehub.R.font.tenorsans)),
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF555555),
+                )
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+
+            for ( i in productImages.sizes.indices) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+//                        .size(24.dp)
+                        .wrapContentSize(
+                            Alignment.Center
+                        )
+                        .background(if (selectorSize.value == productImages.sizes[i]) body else Color.Transparent)
+                        .border(
+                            color = if (selectorSize.value == productImages.sizes[i]) body else placeHolderColor,
+                            width = 2.dp,
+                            shape = RoundedCornerShape(16.dp)
+                        )
+
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .clickable(
+                            onClick = {
+                                selectorSize.value = productImages.sizes[i]
+                            }
+                        )
+
+
+                ) {
+                    Text(
+                        text = productImages.sizes[i],
+                        modifier = Modifier.align(Alignment.Center),
+                        style = TextStyle(
+                            fontSize = 10.sp,
+                            lineHeight = 12.sp,
+                            fontFamily = FontFamily(Font(com.example.stylehub.R.font.tenorsans)),
+                            fontWeight = FontWeight(400),
+                            color =if (selectorSize.value == productImages.sizes[i]) Color.White else label,
+                            textAlign = TextAlign.Center,
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.width(8.dp))
             }
         }
     }

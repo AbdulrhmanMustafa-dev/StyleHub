@@ -10,7 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.stylehub.core.ui.theme.StyleHubTheme
-import com.example.stylehub.presentation.home.HomeRoute
+import com.example.stylehub.presentation.productdetail.ProductDetailRoute
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,12 +19,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            StyleHubTheme {
+            StyleHubTheme(
+                darkTheme = false
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeRoute()
+                    ProductDetailRoute()
                 }
             }
         }

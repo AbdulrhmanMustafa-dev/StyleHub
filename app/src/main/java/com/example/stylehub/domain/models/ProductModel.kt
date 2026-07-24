@@ -12,7 +12,12 @@ data class ProductModel(
     val brand : String,
     val rating : Double,
     val stock : Int,
-    val colors : List<Color> = listOf(Color.Red, Color.Green, Color.Blue)
+    val colors : List<Color> = listOf(Color.Red, Color.Green, Color.Blue),
+    val sizes: List<String> = listOf("S","M","L","XL"),
+    val materials : String?=null,
+    val care : String?=null,
+    val instruction : List<Instruction>? = null
+
 )
 val productsTest = mutableListOf<ProductModel>(
     ProductModel(

@@ -29,5 +29,6 @@ data class HomeState(
  * passed to the coordinator to handle
  **/
 data class HomeActions(
-    val onClick: () -> Unit = {}
+    val onClick: () -> Unit = {},
+    val onProductClick:() -> Unit={}
 )
