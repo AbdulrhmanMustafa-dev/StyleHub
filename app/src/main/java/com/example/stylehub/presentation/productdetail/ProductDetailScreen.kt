@@ -30,7 +30,7 @@ fun ProductDetailScreen(
     val localContext = LocalContext.current
     Scaffold(
         topBar = {
-            Header(title = "Product Detail")
+            Header(title = "Product Detail", onCartClick = actions.onCartClick)
         }
     ) { innerPadding ->
         LazyColumn(

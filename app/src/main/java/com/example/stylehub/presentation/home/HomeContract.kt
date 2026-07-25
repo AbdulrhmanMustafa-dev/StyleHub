@@ -30,5 +30,6 @@ data class HomeState(
  **/
 data class HomeActions(
     val onClick: () -> Unit = {},
-    val onProductClick: (Int) -> Unit = {}
+    val onProductClick: (Int) -> Unit = {},
+    val onCartClick : ()-> Unit = {}
 )

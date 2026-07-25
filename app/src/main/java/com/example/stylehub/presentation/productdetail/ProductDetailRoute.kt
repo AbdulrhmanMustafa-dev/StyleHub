@@ -9,13 +9,14 @@ import androidx.compose.runtime.remember
 @Composable
 fun ProductDetailRoute(
     coordinator: ProductDetailCoordinator = rememberProductDetailCoordinator(),
-    navigateToProductDetail: (Int) -> Unit = {}
+    navigateToProductDetail: (Int) -> Unit = {},
+    navigateToCart: () -> Unit
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsState(ProductDetailState())
 
     // UI Actions
-    val actions = rememberProductDetailActions(coordinator, navigateToProductDetail)
+    val actions = rememberProductDetailActions(coordinator, navigateToProductDetail, navigateToCart)
 
     // UI Rendering
     ProductDetailScreen(uiState, actions)
@@ -25,12 +26,16 @@ fun ProductDetailRoute(
 @Composable
 fun rememberProductDetailActions(
     coordinator: ProductDetailCoordinator,
-    navigateToProductDetail: (Int) -> Unit = {}
+    navigateToProductDetail: (Int) -> Unit = {},
+    navigateToCart: () -> Unit = {}
 ): ProductDetailActions {
-    return remember(coordinator, navigateToProductDetail) {
+    return remember(coordinator, navigateToProductDetail, navigateToCart) {
         ProductDetailActions(
             onProductClicked = { productID ->
                 navigateToProductDetail(productID)
+            },
+            onCartClick = {
+                navigateToCart()
             }
         )
     }

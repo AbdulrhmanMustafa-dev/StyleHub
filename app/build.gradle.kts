@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -77,4 +78,5 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 }

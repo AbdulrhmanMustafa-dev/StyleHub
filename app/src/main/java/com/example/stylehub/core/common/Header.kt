@@ -1,5 +1,6 @@
 package com.example.stylehub.core.common
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +23,7 @@ fun Header(
     title: String,
     onMenuClick: () -> Unit = {},
     modifier: Modifier = Modifier,
+    onCartClick: () -> Unit,
 ) {
 
     TopAppBar(
@@ -60,6 +62,9 @@ fun Header(
             Icon(
                 painter = painterResource(id = R.drawable.shopping_bag),
                 contentDescription = "shopping_bag",
+                modifier = Modifier.clickable(
+                    onClick = onCartClick
+                )
             )
         },
     )

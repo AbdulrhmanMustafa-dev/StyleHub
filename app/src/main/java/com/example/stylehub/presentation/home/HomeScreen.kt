@@ -25,7 +25,7 @@ fun HomeScreen(
 ) {
     Scaffold(
         topBar = {
-            Header(title = "Home")
+            Header(title = "Home", onCartClick = actions.onCartClick)
         },
     ) { innerPadding ->
         LazyColumn(

@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.stylehub.core.routes.Routes
 import com.example.stylehub.core.ui.theme.StyleHubTheme
+import com.example.stylehub.presentation.cart.CartRoute
 import com.example.stylehub.presentation.home.HomeRoute
 import com.example.stylehub.presentation.productdetail.ProductDetailRoute
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,11 +42,30 @@ class MainActivity : ComponentActivity() {
                                             productID
                                         )
                                     )
+                                },
+                                navigateToCart = {
+                                    navController.navigate(
+                                        Routes.Cart.route
+                                    )
+                                }
+                            )
+
+                        }
+                        composable(Routes.ProductDetail.route) {
+                            ProductDetailRoute(
+                                navigateToCart = {
+                                    navController.navigate(
+                                        Routes.Cart.route
+                                    )
                                 }
                             )
                         }
-                        composable(Routes.ProductDetail.route) {
-                            ProductDetailRoute()
+                        composable(Routes.Cart.route) {
+                            CartRoute(
+                                onBackClick = {
+                                    navController.popBackStack()
+                                },
+                            )
                         }
                     }
                 }

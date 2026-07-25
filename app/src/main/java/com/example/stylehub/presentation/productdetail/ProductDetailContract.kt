@@ -24,5 +24,6 @@ data class ProductDetailState(
  **/
 data class ProductDetailActions(
     val onClick: () -> Unit = {},
-    val onProductClicked: (Int) -> Unit = {}
+    val onProductClicked: (Int) -> Unit = {},
+    val onCartClick: () -> Unit = {}
 )

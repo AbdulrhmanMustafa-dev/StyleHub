@@ -16,7 +16,8 @@ data class ProductModel(
     val sizes: List<String> = listOf("S", "M", "L", "XL"),
     val materials: String? = null,
     val care: String? = null,
-    val instruction: List<Instruction>? = null
+    val instruction: List<Instruction>? = null,
+    val numberINCart : Int? = 0
 
 )
 
