@@ -1,5 +1,6 @@
 package com.example.stylehub.presentation.productdetail
 
+import com.example.stylehub.domain.models.AlsoLikeProduct
 import com.example.stylehub.domain.models.ProductModel
 
 
@@ -13,7 +14,8 @@ sealed interface UiState<out T> {
 }
 
 data class ProductDetailState(
-    val ProductState: UiState<ProductModel> = UiState.Loading
+    val ProductState: UiState<ProductModel> = UiState.Loading,
+    val MayLikesProducts: UiState<AlsoLikeProduct> = UiState.Loading
 )
 
 /**
@@ -21,5 +23,6 @@ data class ProductDetailState(
  * passed to the coordinator to handle
  **/
 data class ProductDetailActions(
-    val onClick: () -> Unit = {}
+    val onClick: () -> Unit = {},
+    val onProductClicked: (Int) -> Unit = {}
 )

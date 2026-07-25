@@ -32,7 +32,7 @@ fun ProductCore(
     product: ProductModel
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(20.dp),
         horizontalAlignment = Alignment.Start,

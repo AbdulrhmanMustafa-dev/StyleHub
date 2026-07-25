@@ -3,6 +3,7 @@ package com.example.stylehub.presentation.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -41,7 +42,7 @@ fun HomeScreen(
                     }
 
                     is UiState.Loading -> {
-
+                        CircularProgressIndicator()
                     }
 
                     is UiState.Error -> {
@@ -54,12 +55,13 @@ fun HomeScreen(
                         NewArrival(
                             newArrivalItem = state.data.categories,
                             brands = state.data.brands,
-                            productsTest = state.data.products
+                            productsTest = state.data.products,
+                            onProductClicked = actions.onProductClick
                         )
                     }
 
                     is UiState.Loading -> {
-
+                        CircularProgressIndicator()
                     }
 
                     is UiState.Error -> {
@@ -70,12 +72,13 @@ fun HomeScreen(
                 when (val state = state.forYouState) {
                     is UiState.Success -> {
                         ForYou(
-                            productModel = state.data
+                            productModel = state.data,
+                            onProductClicked = actions.onProductClick
                         )
                     }
 
                     is UiState.Loading -> {
-
+                        CircularProgressIndicator()
                     }
 
                     is UiState.Error -> {
@@ -91,7 +94,7 @@ fun HomeScreen(
                     }
 
                     is UiState.Loading -> {
-
+                        CircularProgressIndicator()
                     }
 
                     is UiState.Error -> {

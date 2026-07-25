@@ -34,7 +34,8 @@ import com.example.stylehub.domain.models.ProductModel
 @Composable
 fun ForYou(
     modifier: Modifier = Modifier,
-    productModel: List<ProductModel>
+    productModel: List<ProductModel>,
+    onProductClicked: (Int) -> Unit
 ) {
     val pageState = rememberPagerState(pageCount = {
         productModel.size
@@ -74,8 +75,8 @@ fun ForYou(
             pageSpacing = 8.dp,
         ) { page ->
             Product(
-                modifier = Modifier,
-                product = productModel[page]
+                product = productModel[page],
+                onProductClicked = onProductClicked
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

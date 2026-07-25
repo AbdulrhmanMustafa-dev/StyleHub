@@ -3,22 +3,23 @@ package com.example.stylehub.domain.models
 import androidx.compose.ui.graphics.Color
 
 data class ProductModel(
-    val id : Int,
-    val title : String,
+    val id: Int,
+    val title: String,
     val images: List<Int>,
-    val price : Double,
-    val description : String,
-    val category : String,
-    val brand : String,
-    val rating : Double,
-    val stock : Int,
-    val colors : List<Color> = listOf(Color.Red, Color.Green, Color.Blue),
-    val sizes: List<String> = listOf("S","M","L","XL"),
-    val materials : String?=null,
-    val care : String?=null,
-    val instruction : List<Instruction>? = null
+    val price: Double,
+    val description: String,
+    val category: String,
+    val brand: String,
+    val rating: Double,
+    val stock: Int,
+    val colors: List<Color> = listOf(Color.Red, Color.Green, Color.Blue),
+    val sizes: List<String> = listOf("S", "M", "L", "XL"),
+    val materials: String? = null,
+    val care: String? = null,
+    val instruction: List<Instruction>? = null
 
 )
+
 val productsTest = mutableListOf<ProductModel>(
     ProductModel(
         id = 1,
@@ -34,7 +35,23 @@ val productsTest = mutableListOf<ProductModel>(
         brand = "FashionCo",
         rating = 4.5,
         stock = 50,
-        colors = listOf(Color.Red, Color.Green, Color.Blue)
+        colors = listOf(Color.Red, Color.Green, Color.Blue),
+        materials = "100% Cotton",
+        care = "Machine wash cold, tumble dry low, iron on low heat.",
+        instruction = listOf(
+            Instruction(
+                icon = com.example.stylehub.R.drawable.do_not_wash.toString(),
+                string = "Machine wash cold"
+            ),
+            Instruction(
+                icon = com.example.stylehub.R.drawable.do_not_bleach.toString(),
+                string = "Tumble dry low"
+            ),
+            Instruction(
+                icon = com.example.stylehub.R.drawable.listview.toString(),
+                string = "Iron on low heat"
+            )
+        )
     ),
     ProductModel(
         id = 2,

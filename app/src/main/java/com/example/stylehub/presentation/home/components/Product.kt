@@ -1,6 +1,7 @@
 package com.example.stylehub.presentation.home.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,11 +34,16 @@ import com.example.stylehub.domain.models.ProductModel
 fun Product(
     modifier: Modifier = Modifier,
     product: ProductModel,
+    onProductClicked: (Int) -> Unit,
 ) {
     Column(
         modifier =
             modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+
+                .clickable(
+                    onClick = { onProductClicked(product.id) }
+                ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -58,7 +64,7 @@ fun Product(
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = product.title,
+            text = "${product.title} ${product.id}",
             style = TextStyle(
                 fontSize = 12.sp,
                 lineHeight = 16.sp,

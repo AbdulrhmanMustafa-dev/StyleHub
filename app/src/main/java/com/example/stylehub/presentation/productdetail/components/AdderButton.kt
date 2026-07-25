@@ -5,8 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -33,16 +36,20 @@ fun AdderButton(
     addButtonOnclick: () -> Unit,
     heartButtonOnclick: () -> Unit
 ) {
-    Box( modifier = modifier
-        .background(
-            color = titleActive
-        )
-        .padding(8.dp)
+    Box(
+        modifier = modifier
+            .background(
+                color = titleActive
+            )
+            .clip(
+                RoundedCornerShape(16.dp)
+            )
+            .padding(vertical = 8.dp, horizontal = 12.dp)
+            .fillMaxWidth()
     ) {
         Row(
-            modifier = Modifier.clip(
-                androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-            ),
+            modifier = Modifier
+                .wrapContentHeight(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
@@ -54,9 +61,9 @@ fun AdderButton(
                 Icon(
                     painter = androidx.compose.ui.res.painterResource(id = com.example.stylehub.R.drawable.plus),
                     contentDescription = "Plus",
-                   tint = inputBackGrounColor
+                    tint = inputBackGrounColor
                 )
-                 Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Add to basket",
                     style = TextStyle(
@@ -70,7 +77,7 @@ fun AdderButton(
                     )
                 )
             }
-             Spacer(modifier = Modifier.weight(1F))
+            Spacer(modifier = Modifier.weight(1F))
             IconButton(
                 onClick = heartButtonOnclick,
                 modifier = Modifier.padding(8.dp)

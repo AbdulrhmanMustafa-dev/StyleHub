@@ -2,18 +2,23 @@ package com.example.stylehub.presentation.productdetail
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.stylehub.core.common.Footer
 import com.example.stylehub.core.common.Header
 import com.example.stylehub.presentation.productdetail.components.AdderButton
+import com.example.stylehub.presentation.productdetail.components.AlsoLike
 import com.example.stylehub.presentation.productdetail.components.Img
 import com.example.stylehub.presentation.productdetail.components.ProductCore
 
@@ -35,9 +40,10 @@ fun ProductDetailScreen(
                 .fillMaxWidth()
                 .padding(innerPadding)
         ) {
-            when (val state = state.ProductState) {
-                is UiState.Success -> {
-                    item {
+            item {
+                when (val state = state.ProductState) {
+                    is UiState.Success -> {
+
                         Img(
                             productImages = state.data
                         )
@@ -60,19 +66,37 @@ fun ProductDetailScreen(
                         ProductCore(
                             product = state.data
                         )
+
+                    }
+
+                    is UiState.Loading -> {
+                        CircularProgressIndicator()
+                    }
+
+                    is UiState.Error -> {
+
                     }
                 }
+                when (val state = state.MayLikesProducts) {
+                    is UiState.Success -> {
 
-                is UiState.Loading -> {
+                        AlsoLike(
+                            selectedProduct = state.data.selectedProduct,
+                            alsoLikesProducts = state.data.alsoLikeProduct,
+                            onProductClicked = actions.onProductClicked
+                        )
 
+                    }
+
+                    is UiState.Loading -> {
+                        CircularProgressIndicator()
+                    }
+
+                    is UiState.Error -> {
+
+                    }
                 }
-
-                is UiState.Error -> {
-
-                }
-            }
-
-            item {
+                Spacer(modifier = Modifier.height(16.dp))
                 Footer()
             }
         }

@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stylehub.R
+import com.example.stylehub.domain.models.ProductModel
 
 
 @Composable
@@ -40,7 +41,8 @@ fun NewArrival(
     modifier: Modifier = Modifier,
     newArrivalItem: List<String>,
     brands: List<Int>,
-    productsTest: List<com.example.stylehub.domain.models.ProductModel>
+    productsTest: List<ProductModel>,
+    onProductClicked: (Int) -> Unit
 ) {
 
     val localContext = androidx.compose.ui.platform.LocalContext.current
@@ -141,7 +143,7 @@ fun NewArrival(
             maxItemsInEachRow = 2
         ) {
             for (i in productsTest.indices) {
-                Product(product = productsTest[i], modifier = Modifier.weight(1f))
+                Product(modifier = Modifier.weight(1f), product = productsTest[i], onProductClicked)
             }
         }
         Spacer(modifier = modifier.height(16.dp))

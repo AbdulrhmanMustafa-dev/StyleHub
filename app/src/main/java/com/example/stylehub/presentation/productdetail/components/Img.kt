@@ -37,7 +37,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stylehub.core.ui.theme.body
@@ -46,7 +45,6 @@ import com.example.stylehub.core.ui.theme.offWhiteColor
 import com.example.stylehub.core.ui.theme.placeHolderColor
 import com.example.stylehub.core.ui.theme.secondaryColor
 import com.example.stylehub.domain.models.ProductModel
-import com.example.stylehub.domain.models.productsTest
 import kotlinx.coroutines.launch
 
 @Composable
@@ -241,7 +239,6 @@ fun Img(
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(16.dp))
-//                        .size(24.dp)
                         .wrapContentSize(
                             Alignment.Center
                         )
@@ -278,15 +275,4 @@ fun Img(
             }
         }
     }
-}
-
-@Preview(name = "Img")
-@Composable
-private fun PreviewImg(
-
-) {
-    Img(
-        productImages = productsTest[0],
-        modifier = Modifier.background(color = Color.White)
-    )
 }
