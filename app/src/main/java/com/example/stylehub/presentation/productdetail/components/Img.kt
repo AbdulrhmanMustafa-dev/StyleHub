@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.toColorInt
 import com.example.stylehub.core.ui.theme.body
 import com.example.stylehub.core.ui.theme.label
 import com.example.stylehub.core.ui.theme.offWhiteColor
@@ -162,7 +163,7 @@ fun Img(
         Text(
             modifier = Modifier
                 .padding(horizontal = 8.dp, vertical = 4.dp),
-            text ="$ ${productImages.price}  ",
+            text = "$ ${productImages.price}  ",
             style = TextStyle(
                 fontSize = 18.sp,
                 fontFamily = FontFamily(Font(com.example.stylehub.R.font.tenorsans)),
@@ -187,9 +188,9 @@ fun Img(
                     color = Color(0xFF555555),
                 )
             )
-             Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
-            for ( i in productImages.colors.indices) {
+            for (i in productImages.colors.indices) {
                 Box(
                     modifier = Modifier
                         .background(Color.Transparent)
@@ -209,7 +210,7 @@ fun Img(
                         modifier = Modifier
                             .clip(RoundedCornerShape(16.dp))
                             .size(16.dp)
-                            .background(productImages.colors[i])
+                            .background(Color(productImages.colors[i].toColorInt()))
                             .padding(horizontal = 8.dp, vertical = 4.dp)
                             .clickable(
                                 onClick = {
@@ -220,7 +221,7 @@ fun Img(
 
                     )
                 }
-                 Spacer(modifier = Modifier.width(4.dp))
+                Spacer(modifier = Modifier.width(4.dp))
             }
             Spacer(modifier = Modifier.weight(1F))
             Text(
@@ -235,7 +236,7 @@ fun Img(
             )
             Spacer(modifier = Modifier.width(8.dp))
 
-            for ( i in productImages.sizes.indices) {
+            for (i in productImages.sizes.indices) {
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(16.dp))
@@ -266,7 +267,7 @@ fun Img(
                             lineHeight = 12.sp,
                             fontFamily = FontFamily(Font(com.example.stylehub.R.font.tenorsans)),
                             fontWeight = FontWeight(400),
-                            color =if (selectorSize.value == productImages.sizes[i]) Color.White else label,
+                            color = if (selectorSize.value == productImages.sizes[i]) Color.White else label,
                             textAlign = TextAlign.Center,
                         )
                     )

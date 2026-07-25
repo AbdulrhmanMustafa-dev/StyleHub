@@ -1,7 +1,5 @@
 package com.example.stylehub.domain.models
 
-import androidx.compose.ui.graphics.Color
-
 data class ProductModel(
     val id: Int,
     val title: String,
@@ -12,12 +10,12 @@ data class ProductModel(
     val brand: String,
     val rating: Double,
     val stock: Int,
-    val colors: List<Color> = listOf(Color.Red, Color.Green, Color.Blue),
+    val colors: List<String> = listOf("#FF0000", "#00FF00", "#0000FF"),
     val sizes: List<String> = listOf("S", "M", "L", "XL"),
     val materials: String? = null,
     val care: String? = null,
     val instruction: List<Instruction>? = null,
-    val numberINCart : Int? = 0
+    val numberINCart: Int? = 0
 
 )
 
@@ -36,20 +34,20 @@ val productsTest = mutableListOf<ProductModel>(
         brand = "FashionCo",
         rating = 4.5,
         stock = 50,
-        colors = listOf(Color.Red, Color.Green, Color.Blue),
+        colors = listOf("#FF0000", "#00FF00", "#0000FF"),
         materials = "100% Cotton",
         care = "Machine wash cold, tumble dry low, iron on low heat.",
         instruction = listOf(
             Instruction(
-                icon = com.example.stylehub.R.drawable.do_not_wash.toString(),
+                icon = com.example.stylehub.R.drawable.do_not_wash,
                 string = "Machine wash cold"
             ),
             Instruction(
-                icon = com.example.stylehub.R.drawable.do_not_bleach.toString(),
+                icon = com.example.stylehub.R.drawable.do_not_bleach,
                 string = "Tumble dry low"
             ),
             Instruction(
-                icon = com.example.stylehub.R.drawable.listview.toString(),
+                icon = com.example.stylehub.R.drawable.listview,
                 string = "Iron on low heat"
             )
         )

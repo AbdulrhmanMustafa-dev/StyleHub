@@ -111,10 +111,12 @@ fun ProductCore(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
-                    Icon(
-                        painter = painterResource(id = product.instruction[i].icon?.toInt()!!),
-                        contentDescription = null
-                    )
+                    product.instruction[i].icon?.let { id ->
+                        Icon(
+                            painter = painterResource(id = id),
+                            contentDescription = null
+                        )
+                    }
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = product.instruction[i].string!!,
@@ -152,7 +154,7 @@ private fun PreviewProductCore() {
             brand = "FashionCo",
             rating = 4.5,
             stock = 50,
-            colors = listOf(Color.Red, Color.Green, Color.Blue),
+            colors = listOf("#FF0000", "#00FF00", "#0000FF"),
             materials = "We work with monitoring programmes to ensure compliance with safety, health and quality standards for our products.",
             care = "To keep your jackets and coats clean, you only need to freshen them up and go over them with a cloth or a clothes brush. If you need to dry clean a garment, look for a dry cleaner that uses technologies that are respectful of the environment.",
 

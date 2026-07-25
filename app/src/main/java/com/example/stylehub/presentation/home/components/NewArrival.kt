@@ -143,7 +143,11 @@ fun NewArrival(
             maxItemsInEachRow = 2
         ) {
             for (i in productsTest.indices) {
-                Product(modifier = Modifier.weight(1f), product = productsTest[i], onProductClicked)
+                Product(
+                    modifier = Modifier.weight(1f),
+                    product = productsTest[i],
+                    onProductClicked = onProductClicked
+                )
             }
         }
         Spacer(modifier = modifier.height(16.dp))

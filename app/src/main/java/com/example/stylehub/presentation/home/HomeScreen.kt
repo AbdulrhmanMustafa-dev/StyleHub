@@ -33,7 +33,9 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier =
                 Modifier
-                    .padding(innerPadding),
+                    .padding(innerPadding)
+
+            ,
         ) {
             item {
                 when (val state = state.bannerState) {
