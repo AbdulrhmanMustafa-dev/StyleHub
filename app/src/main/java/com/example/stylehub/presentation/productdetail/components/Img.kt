@@ -23,8 +23,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,8 +58,8 @@ fun Img(
         pageCount = { productImages.images.size }
     )
     val coroutineScope = rememberCoroutineScope()
-    val selectorColor = remember { mutableStateOf(productImages.colors[0]) }
-    val selectorSize = remember { mutableStateOf(productImages.sizes[0]) }
+    val selectorColor = rememberSaveable { mutableStateOf(productImages.colors[0]) }
+    val selectorSize = rememberSaveable { mutableStateOf(productImages.sizes[0]) }
 
 
     Column(
@@ -215,6 +215,7 @@ fun Img(
                             .clickable(
                                 onClick = {
                                     selectorColor.value = productImages.colors[i]
+                                    productImages.selectedColor = selectorColor.value
                                 }
                             )
                             .align(Alignment.Center)
@@ -254,6 +255,7 @@ fun Img(
                         .clickable(
                             onClick = {
                                 selectorSize.value = productImages.sizes[i]
+                                productImages.selectedSize = selectorSize.value
                             }
                         )
 

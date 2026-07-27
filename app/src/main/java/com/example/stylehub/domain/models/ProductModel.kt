@@ -15,7 +15,9 @@ data class ProductModel(
     val materials: String? = null,
     val care: String? = null,
     val instruction: List<Instruction>? = null,
-    val numberINCart: Int? = 0
+    val numberINCart: Int? = 0,
+    var selectedColor: String? = colors[0],
+    var selectedSize: String? = sizes[0]
 
 )
 

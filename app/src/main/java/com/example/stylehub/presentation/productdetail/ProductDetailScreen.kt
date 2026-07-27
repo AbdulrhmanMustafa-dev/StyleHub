@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.stylehub.core.common.Footer
 import com.example.stylehub.core.common.Header
@@ -42,13 +41,14 @@ fun ProductDetailScreen(
         ) {
             item {
                 when (val state = state.ProductState) {
-                    is UiState.Success -> {
+                    is UIState.Success -> {
 
                         Img(
                             productImages = state.data
                         )
                         AdderButton(
                             addButtonOnclick = {
+                                actions.onAddToCard()
                                 Toast.makeText(
                                     localContext,
                                     "Added to cart",
@@ -69,16 +69,16 @@ fun ProductDetailScreen(
 
                     }
 
-                    is UiState.Loading -> {
+                    is UIState.Loading -> {
                         CircularProgressIndicator()
                     }
 
-                    is UiState.Error -> {
+                    is UIState.Error -> {
 
                     }
                 }
                 when (val state = state.MayLikesProducts) {
-                    is UiState.Success -> {
+                    is UIState.Success -> {
 
                         AlsoLike(
                             selectedProduct = state.data.selectedProduct,
@@ -88,11 +88,11 @@ fun ProductDetailScreen(
 
                     }
 
-                    is UiState.Loading -> {
+                    is UIState.Loading -> {
                         CircularProgressIndicator()
                     }
 
-                    is UiState.Error -> {
+                    is UIState.Error -> {
 
                     }
                 }
@@ -101,13 +101,4 @@ fun ProductDetailScreen(
             }
         }
     }
-}
-
-@Composable
-@Preview(name = "ProductDetail")
-private fun ProductDetailScreenPreview() {
-    ProductDetailScreen(
-        state = ProductDetailState(),
-        actions = ProductDetailActions()
-    )
 }

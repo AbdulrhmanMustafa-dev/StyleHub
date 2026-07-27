@@ -57,6 +57,13 @@ class MainActivity : ComponentActivity() {
                                     navController.navigate(
                                         Routes.Cart.route
                                     )
+                                },
+                                navigateToProductDetail = { productID ->
+                                    navController.navigate(
+                                        Routes.ProductDetail.createRoute(
+                                            productID
+                                        )
+                                    )
                                 }
                             )
                         }
@@ -65,6 +72,9 @@ class MainActivity : ComponentActivity() {
                                 onBackClick = {
                                     navController.popBackStack()
                                 },
+                                continueShoppingClick = {
+                                    navController.popBackStack()
+                                }
                             )
                         }
                     }

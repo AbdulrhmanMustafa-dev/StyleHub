@@ -1,16 +1,13 @@
 package com.example.stylehub.presentation.cart
 
+import com.example.stylehub.domain.UiCases.UIState
 import com.example.stylehub.domain.models.ProductModel
 
 
 /**
  * UI State that represents CartScreen
  **/
-sealed interface UIState<out T> {
-    data object Loading : UIState<Nothing>
-    data class Success<T>(val data: T) : UIState<T>
-    data class Error(val message: String) : UIState<Nothing>
-}
+
 
 data class CartState(
     val productInCartState: UIState<List<ProductModel>> = UIState.Loading
@@ -22,8 +19,8 @@ data class CartState(
  **/
 data class CartActions(
     val onBackClick: () -> Unit = {},
-    val onAddClick: () -> Unit = {},
-    val onMinusClick: () -> Unit = {},
+    val onAddClick: (Int) -> Unit = {},
+    val onMinusClick: (Int) -> Unit = {},
     val continueShoppingClick: () -> Unit = {},
     val buyNowClick: () -> Unit = {}
 )

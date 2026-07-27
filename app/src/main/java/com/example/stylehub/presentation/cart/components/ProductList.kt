@@ -44,8 +44,8 @@ fun ProductList(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
     productInCart: List<ProductModel>,
-    onAddClick: () -> Unit,
-    onMinusClick: () -> Unit,
+    onAddClick: (Int) -> Unit,
+    onMinusClick: (Int) -> Unit,
     continueShoppingClick: () -> Unit,
     buyNowClick: () -> Unit
 ) {
@@ -113,8 +113,8 @@ fun ProductList(
                     for (i in productInCart) {
                         ProductItem(
                             product = i,
-                            onAddClick = onAddClick,
-                            onMinusClick = onMinusClick
+                            onAddClick = { onAddClick(i.id) },
+                            onMinusClick = { onMinusClick(i.id) }
                         )
                     }
                 }

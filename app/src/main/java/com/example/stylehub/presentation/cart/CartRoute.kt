@@ -10,14 +10,13 @@ import androidx.compose.runtime.remember
 fun CartRoute(
     coordinator: CartCoordinator = rememberCartCoordinator(),
     onBackClick: () -> Unit,
-    onAddClick: () -> Unit = {},
-    onMinusClick: () -> Unit = {},
+    continueShoppingClick: () -> Unit,
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsState(CartState())
 
     // UI Actions
-    val actions = rememberCartActions(coordinator, onBackClick, onAddClick, onMinusClick)
+    val actions = rememberCartActions(coordinator, onBackClick, continueShoppingClick)
 
     // UI Rendering
     CartScreen(uiState, actions)
@@ -26,14 +25,19 @@ fun CartRoute(
 
 @Composable
 fun rememberCartActions(
-    coordinator: CartCoordinator, onBackClick: () -> Unit, onAddClick: () -> Unit = {},
-    onMinusClick: () -> Unit = {},
+    coordinator: CartCoordinator, onBackClick: () -> Unit, continueShoppingClick: () -> Unit
+
 ): CartActions {
-    return remember(coordinator, onBackClick, onAddClick, onMinusClick) {
+    return remember(coordinator, onBackClick, continueShoppingClick) {
         CartActions(
             onBackClick = onBackClick,
-            onAddClick = onAddClick,
-            onMinusClick = onMinusClick
+            onAddClick = { productID ->
+                coordinator.viewModel.increaseQuantity(productID)
+            },
+            onMinusClick = { productID ->
+                coordinator.viewModel.decreaseQuantity(productID)
+            },
+            continueShoppingClick = continueShoppingClick
         )
     }
 }

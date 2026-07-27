@@ -11,11 +11,11 @@ sealed class Routes(val route: String) {
     data object ProductDetail : Routes(route = "product_detail/{productID}") {
         fun createRoute(productID: Int) = "product_detail/${productID}"
     }
-
-    //    @Serializable
-//    data object Search : Routes(route = "search")
     @Serializable
-    data object Cart : Routes(route = "cart")
+    data object Cart : Routes(route = "cart") {
+            fun createRoute() = "cart"
+    }
+
 //    @Serializable
 //    data object Profile : Routes(route = "profile")
 }

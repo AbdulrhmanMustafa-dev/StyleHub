@@ -10,8 +10,9 @@ import androidx.compose.runtime.remember
 fun ProductDetailRoute(
     coordinator: ProductDetailCoordinator = rememberProductDetailCoordinator(),
     navigateToProductDetail: (Int) -> Unit = {},
-    navigateToCart: () -> Unit
-) {
+    navigateToCart: () -> Unit,
+
+    ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsState(ProductDetailState())
 
@@ -36,7 +37,10 @@ fun rememberProductDetailActions(
             },
             onCartClick = {
                 navigateToCart()
-            }
+            },
+            onAddToCard = {
+                coordinator.viewModel.addToCart()
+            },
         )
     }
 }

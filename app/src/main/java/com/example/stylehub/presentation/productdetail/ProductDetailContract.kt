@@ -1,5 +1,6 @@
 package com.example.stylehub.presentation.productdetail
 
+import com.example.stylehub.domain.UiCases.UIState
 import com.example.stylehub.domain.models.AlsoLikeProduct
 import com.example.stylehub.domain.models.ProductModel
 
@@ -7,15 +8,10 @@ import com.example.stylehub.domain.models.ProductModel
 /**
  * UI State that represents ProductDetailScreen
  **/
-sealed interface UiState<out T> {
-    data object Loading : UiState<Nothing>
-    data class Success<T>(val data: T) : UiState<T>
-    data class Error(val message: String) : UiState<Nothing>
-}
 
 data class ProductDetailState(
-    val ProductState: UiState<ProductModel> = UiState.Loading,
-    val MayLikesProducts: UiState<AlsoLikeProduct> = UiState.Loading
+    val ProductState: UIState<ProductModel> = UIState.Loading,
+    val MayLikesProducts: UIState<AlsoLikeProduct> = UIState.Loading
 )
 
 /**
@@ -25,5 +21,7 @@ data class ProductDetailState(
 data class ProductDetailActions(
     val onClick: () -> Unit = {},
     val onProductClicked: (Int) -> Unit = {},
-    val onCartClick: () -> Unit = {}
-)
+    val onCartClick: () -> Unit = {},
+    val onAddToCard: () -> Unit = {},
+
+    )
